@@ -15,7 +15,7 @@ object SampleFor {
   )
 
   println("// ジェネレータでパターンマッチも可能")
-  val map = Map(1->"s",2->"c",3->"a",4->"l",5->"a")
+  val map = Map(1->"s", 2->"c", 3->"a", 4->"l", 5->"a")
   println(map)
   val ret = for ( m@(k,v)  <- map ; if v != "a" ) yield m
   println(ret)

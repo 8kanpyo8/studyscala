@@ -6,16 +6,16 @@ object SampleClass {
 
   //
   println("// クラス定義")
-  class cls1(val _x: Int,val _y: Int) {
-    def addX(x: Int) = new cls1(_x+x, _y)
-    def addY(y: Int) = new cls1(_x,_y+y)
+  class Cls1(val x: Int, val y: Int) {
+    def addX(x: Int) = new Cls1(this.x + x, this.y)
+    def addY(y: Int) = new Cls1(this.x, this.y + y)
     // コンストラクターの引数にvalをつけると公開される(c._xと触れる)
-    def +(c:cls1):cls1 = new cls1(_x+c._x,_y+c._y)
-    def add(x: Int)(y: Int) = new cls1(_x+x,_y+y)
+    def +(c:Cls1):Cls1 = new Cls1(this.x + c.x, this.y + c.y)
+    def add(x: Int)(y: Int) = new Cls1(this.x + x, this.y + y)
     final def print() = println(getValues)
-    protected def getValues:String = "x="+_x+",y="+_y
+    protected def getValues:String = "x="+this.x+",y="+this.y
   }
-  val val1_1 = new cls1(3, 4)
+  val val1_1 = new Cls1(3, 4)
   val1_1.print()
   val1_1.addX(4).print()
   (val1_1 + val1_1.addY(2)).print()
@@ -27,23 +27,23 @@ object SampleClass {
   //
   println("// クラス継承")
   // 親クラスのメソッド getValues をオーバーライド。親クラスのgetValueを使用
-  class cls2(_x:Int,_y:Int,_z:Int) extends cls1(_x,_y) {
-    override def getValues:String = "cls2 "+super.getValues + ",z=" + _z
+  class Cls2(x: Int, y: Int, z: Int) extends Cls1(x,y) {
+    override def getValues:String = "Cls2 "+super.getValues + ",z=" + z
   }
-  new cls2(1,2,3).print()
+  new Cls2(1,2,3).print()
 
 
   //
   println("// 抽象クラス")
   // getNameのメソッドを子クラスに実装強要。抽象メソッド
-  abstract class cls3(_x:Int,_y:Int) extends cls1(_x,_y) {
+  abstract class Cls3(x: Int, y: Int) extends Cls1(x,y) {
     protected def getName:String
     def printName():Unit = println(getName)
   }
-  class cls4(_x:Int,_y:Int) extends cls3(_x,_y) {
-    protected def getName = "cls4"
+  class Cls4(x: Int,y: Int) extends Cls3(x,y) {
+    protected def getName = "Cls4"
   }
-  new cls4(6,7).printName()
+  new Cls4(6,7).printName()
   Array(1,2)
 
 

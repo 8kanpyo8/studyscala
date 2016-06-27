@@ -5,27 +5,27 @@ object SamplePatternMatch {
   }
 
   println("// 変数パターン(数値)")
-  def func1 (p:Int):String = {
+  def f1 (p: Int): String = {
     p match {
       case 1 => "one"
       case _ => "other"
     }
   }
-  println(func1(1))
+  println(f1(1))
 
   println("// 変数パターン(文字列)")
-  def func2 (p:String):String = {
+  def f2 (p: String): String = {
     p match {
       case "scala" | "java" => p
       case _ => "unknown lang"
     }
   }
-  println(func2("scala"))
-  println(func2("c++"))
+  println(f2("scala"))
+  println(f2("c++"))
 
 
   println("// 変数パターン(部分一致)")
-  def func3 (p:Array[Int]):String = {
+  def f3 (p: Array[Int]): String = {
     p match {
       case Array(1,2,_) => "Case1. 1,2,?"
       case Array(_,2,_*) => "Case2. ?.2,?,?..."
@@ -33,14 +33,14 @@ object SamplePatternMatch {
       case _ => "Case4. other"
     }
   }
-  println(func3( Array(1,2,3) ))
-  println(func3( Array(1,2,3,4) ))
-  println(func3( Array(2,2) ))
-  println(func3( Array(1,5,3,4) ))
+  println(f3( Array(1,2,3) ))
+  println(f3( Array(1,2,3,4) ))
+  println(f3( Array(2,2) ))
+  println(f3( Array(1,5,3,4) ))
 
 
   println("// パターンバインド、ガード")
-  def func4 (p:Array[Int]):String ={
+  def f4 (p: Array[Int]): String ={
     p match {
       case Array(x,2,z) if x < z => "Case1. x=" + x + ",z="+z
       case Array(x,2,z) => "Case2. x=" + x + ",z="+z
@@ -48,30 +48,30 @@ object SamplePatternMatch {
       case _ => "Case4. other"
     }
   }
-  println(func4( Array(1,2,3) ))
-  println(func4( Array(1,2,3,4) ))
-  println(func4( Array(3,2,1) ))
+  println(f4( Array(1,2,3) ))
+  println(f4( Array(1,2,3,4) ))
+  println(f4( Array(3,2,1) ))
 
   println("// パターンバインド(変数)")
-  def func5 () = {
+  def f5 () = {
     val Array(ax, ay, az) = Array(1, 2, 3)
     println("ax=" + ax + ",ay=" + ay + ",az=" + az)
     val t@(sebangou, sei, mei) = (10, "大空", "翼")
     println("背番号" + sebangou + " " + sei + mei)
   }
-  func5()
+  f5()
 
   println("// パターンバインド(caseクラス)")
-  def func6 () = {
+  def f6 () = {
     case class Sensyu(_sebangou: Int, _sei: String, _mei: String)
     val kojirou = Sensyu(9, "日向", "小次郎")
     val Sensyu(sebangou, sei, mei) = kojirou
     println("背番号" + sebangou + " " + sei + mei)
   }
-  func6()
+  f6()
 
   println("// パターンマッチバインド(caseクラス)")
-  def func7 () = {
+  def f7 () = {
     case class Sensyu(_sebangou: Int, _sei: String, _mei: String)
     val tsubasa = Sensyu(10, "大空", "翼")
     val kojirou = Sensyu(9, "日向", "小次郎")
@@ -88,11 +88,11 @@ object SamplePatternMatch {
     println( captain(kojirou) )
     println( captain( (10,"リオネル","メッシ") ) )
   }
-  func7()
+  f7()
 
   /*
   println("// パターンマッチバインド(XML)")
-  def func8 () = {
+  def f8 () = {
 
     def zip2address(_zip:Int):String = {
       val query = "http://zip.cgis.biz/xml/zip.php" + "?zn=" + _zip
@@ -116,7 +116,7 @@ object SamplePatternMatch {
 
 
   }
-  func8()
+  f8()
   */
 
 }
